@@ -15,8 +15,21 @@ router.get ('/', (req, res) => {
 
 // API for posting the Buddy Vehicle ID
 router.post ('/', (req, res) => {
+
+    const newbuddyVehicleId = {
+        buddyVehicleId: req.body.buddyVehicleId,
+        buddyId: req.body.buddyId,
+        vehicleType: req.body.vehicleType,
+        vehicleModel: req.body.vehicleModel,
+        vehicleColor: req.body.vehicleColor,
+        vehicleInsurance: req.body.vehicleInsurance
+
+    };
+
+
     res.json ({
-        msg: "Successfully post Buddy Vehicle ID"
+        msg: "Successfully post Buddy Vehicle ID",
+        buddyVehicleIdInfo: newbuddyVehicleId
     });
 });
 

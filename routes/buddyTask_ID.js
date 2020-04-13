@@ -15,8 +15,21 @@ router.get ('/', (req, res) => {
 
 // API for posting Buddy Task ID
 router.post ('/', (req, res) => {
+    const buddyTaskId = {
+        buddyTaskId: req.body.buddyTaskId,
+        orderId: req.body.orderId,
+        deliveryBuddyId: req.body.deliveryBuddyId,
+        pickupDelay: req.body.pickupDelay,
+        delayReason: req.body.delayReason,
+        buddyComment: req.body.buddyComment,
+        userSignature: req.body.userSignature,
+        reportDeliveryuser: req.body.reportDeliveryuser
+
+    }
+
     res.json ({
-        msg: "Successfully POST Buddy Task ID"
+        msg: "Successfully POST Buddy Task ID",
+        buddyTaskIdInfo: buddyTaskId
     });
 });
 

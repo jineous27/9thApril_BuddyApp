@@ -14,8 +14,19 @@ router.get ('/', (req, res) => {
 
 //API for posting buddy payment ID
 router.post ('/', (req, res) => {
+
+    const buddyPaymentId = {
+        buddyPaymentId: req.body.buddyPaymentId,
+        orderId: req.body.orderId,
+        deliveryBuddyId: req.body.deliveryBuddyId,
+        paymentComment: req.body.paymentComment
+
+    }
+
+
     res.json ({
-        msg: "Successfully POST Buddy Payment ID"
+        msg: "Successfully POST Buddy Payment ID",
+        buddyPaymentIdInfo: buddyPaymentId,
     });
 });
 
