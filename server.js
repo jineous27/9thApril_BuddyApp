@@ -11,6 +11,7 @@ const deliveryOrderStatusRoutes = require ('./routes/deliveryOrder_Status');
 const buddyPaymentIDRoutes = require ('./routes/buddypayment_ID');
 
 
+require("./database");
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false })) ;
