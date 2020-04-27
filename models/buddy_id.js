@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 const buddyIdSchema = mongoose.Schema(
     {
-        delivery_buddy_id: {
-            type: Number,
-            required: true
-        },
+        // delivery_buddy_id: {
+        //     type: Number,
+        //     required: true
+        // },
         buddy_first_name: {
             type: String,
             required: true
@@ -17,7 +17,7 @@ const buddyIdSchema = mongoose.Schema(
             type: String,
             required: true
         },
-        buddy_account: {
+        buddy_account_password: {
             type: String,
             required: true
         },
@@ -29,9 +29,21 @@ const buddyIdSchema = mongoose.Schema(
             type: Date,
             required: true
         },
+        buddy_profilie_image: {
+            type: String,
+            required: true
+        },
+        buddy_work_type: {
+            type: String,
+            required: true
+        },
         buddy_abn: {
             type: Number,
             required: true
+        },
+        registered_gst: {
+            type: Boolean,
+            defalut: false
         },
         buddy_emergency_name: {
             type: String, 
@@ -50,4 +62,4 @@ const buddyIdSchema = mongoose.Schema(
 
 
 
-module.exports = mongooese.model ("buddy_id", buddyIdSchema)
+module.exports = mongoose.model ("buddy_id", buddyIdSchema)

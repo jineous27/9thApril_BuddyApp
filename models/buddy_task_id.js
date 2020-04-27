@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
 const buddyTaskIdSchema = mongoose.Schema(
     {
-        buddy_task_id: {
-            type: Number,
-            required: true
-        },
+        // buddy_task_id: {
+        //     type: Number,
+        //     required: true
+        // },
         order_id: {
             type: Number,
             required: true

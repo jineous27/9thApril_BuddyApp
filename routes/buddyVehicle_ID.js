@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const buddyVehicleIdModel = require("../models/buddy_vehicleId");
 
 //CRUD - Create Retrieve Update Delete
 
@@ -16,21 +17,35 @@ router.get ('/', (req, res) => {
 // API for posting the Buddy Vehicle ID
 router.post ('/', (req, res) => {
 
-    const newbuddyVehicleId = {
-        buddyVehicleId: req.body.buddyVehicleId,
-        buddyId: req.body.buddyId,
-        vehicleType: req.body.vehicleType,
-        vehicleModel: req.body.vehicleModel,
-        vehicleColor: req.body.vehicleColor,
-        vehicleInsurance: req.body.vehicleInsurance
-
-    };
-
-
-    res.json ({
-        msg: "Successfully post Buddy Vehicle ID",
-        buddyVehicleIdInfo: newbuddyVehicleId
+    const newbuddyVehicleId = new buddyVehicleIdModel ({
+        // buddyVehicleId: req.body.buddyVehicleId,
+        delivery_buddy_id: req.body.delivery_buddy_id,
+        vehicle_registration_number: req.body.vehicle_registration_number,
+        vehicle_type: req.body.vehicle_type,
+        vehicle_model: req.body.vehicle_model,
+        vehicle_color: req.body.vehicle_color,
+        vehicle_insurance: req.body.vehicle_insurance,
+        insurance_documents: req.body.insurance_documents
     });
+
+    newbuddyVehicleId
+        .save()
+        .then(result => {
+            res.status(201).json({
+                message: 'Handling POST requests to buddy ID',
+                createBuddyVehicleId: result
+            })
+        })
+        .catch(err => {
+            res.status(500).json({
+                error: err.message
+            });
+        });
+
+    // res.json ({
+    //     msg: "Successfully post Buddy Vehicle ID",
+    //     buddyVehicleIdInfo: newbuddyVehicleId
+    // });
 });
 
 // API for patching the Buddy Vehicle ID

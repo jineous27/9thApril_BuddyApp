@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const deliveryOrderStatusModel = require("../models/delivery_order_status");
 
 //CRUD - Create Retrieve Update Delete
 
@@ -17,17 +18,38 @@ router.get ('/', (req, res) => {
 // API for posting the Delivery Order status ID
 router.post ('/', (req, res) => {
 
-    const newDeliveryOrderStatusId = {
-        deliveryStatusId: req.body.deliveryStatusId,
-        buddyTaskId: req.body.buddyTaskId,
-        deliveryOrderStatus: req.body.deliveryOrderStatus,
-        timeStamp: req.body.timeStamp
-    };
-
-    res.json ({
-        msg: "Successfully POST Delivery Order Status ID",
-        DeliveryOrderStatusInfo: newDeliveryOrderStatusId
+    const newDeliveryOrderStatusId = new deliveryOrderStatusModel ({
+        // delivery_status_id: req.body.delivery_status_id,
+        buddy_task_id: req.body.buddy_task_id,
+        delivery_order_status: req.body.delivery_order_status,
+        time_to_accept: req.body.time_to_accept,
+        time_to_pickup: req.body.time_to_pickup,
+        time_to_delay: req.body.time_to_delay,
+        time_to_complete: req.body.time_to_complete,
+        time_to_incomplete: req.body.time_to_incomplete,
+        time_to_cancel: req.body.time_to_cancel
     });
+
+    newDeliveryOrderStatusId
+    .save()
+    .then(result => {
+        res.status(201).json({
+            message: 'Handling POST requests to delivery order status id',
+            createdeliveryOrderStatusInfo: result
+        })
+    })
+    .catch(err => {
+        res.status(500).json({
+            error: err.message
+        });
+    });
+
+
+
+    // res.json ({
+    //     msg: "Successfully POST Delivery Order Status ID",
+    //     DeliveryOrderStatusInfo: newDeliveryOrderStatusId
+    // });
 });
 
 

@@ -1,10 +1,10 @@
 const mongoose = require ('mongoose');
 const buddyVehicleSchema = mongoose.Schema(
     {
-        buddy_vehicle_id: {
-            type: Number,
-            required: true
-        },
+        // buddy_vehicle_id: {
+        //     type: Number,
+        //     required: true
+        // },
         delivery_buddy_id: {
             type: String,
             required: true

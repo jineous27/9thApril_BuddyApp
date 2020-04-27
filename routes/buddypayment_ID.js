@@ -1,5 +1,6 @@
 const express = require ('express');
 const router = express.Router();
+const buddyPaymentIdModel = require("../models/buddy_payment");
 
 //CRUD - Create Retrieve Update Delete
 
@@ -15,19 +16,32 @@ router.get ('/', (req, res) => {
 //API for posting buddy payment ID
 router.post ('/', (req, res) => {
 
-    const buddyPaymentId = {
-        buddyPaymentId: req.body.buddyPaymentId,
-        orderId: req.body.orderId,
-        deliveryBuddyId: req.body.deliveryBuddyId,
-        paymentComment: req.body.paymentComment
+    const newbuddyPaymentId = new buddyPaymentIdModel ({
+        delivery_payment_id: req.body.delivery_payment_id,
+        order_id: req.body. order_id,
+        delivery_buddy_id: req.body.delivery_payment_id,
+        payment_comment: req.body.payment_comment
 
-    }
-
-
-    res.json ({
-        msg: "Successfully POST Buddy Payment ID",
-        buddyPaymentIdInfo: buddyPaymentId,
     });
+
+    newbuddyPaymentId
+        .save()
+        .then(result => {
+            res.status(201).json({
+                message: 'Handling POST requests to buddy Id',
+                createBuddyPaymentInfo: result
+            })
+        })
+        . catch(err => {
+            res.status(500).json({
+                error: err.message
+            });
+        });
+
+    // res.json ({
+    //     msg: "Successfully POST Buddy Payment ID",
+    //     buddyPaymentIdInfo: buddyPaymentId,
+    // });
 });
 
 //API for patching buddy payment ID
